@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Dashboard from '../views/Dashboard.vue'
+import Barcelona from '../views/barcelona.vue'
 import NewFootballer from '../views/NewFootballer.vue'
 import ViewFootballer from '../views/ViewFootballer.vue'
 import EditFootballer from '../views/EditFootballer.vue'
@@ -15,9 +15,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/dashboard',
-    name: 'dashboard',
-    component: Dashboard
+    path: '/barcelona',
+    name: 'barcelona',
+    component: Barcelona
   },
   {
     path: '/new',

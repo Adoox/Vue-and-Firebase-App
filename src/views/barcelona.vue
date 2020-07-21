@@ -2,7 +2,11 @@
   <div id="dashboard">
     <ul class="collection with-header">
       <li class="collection-header">
-        <h4>Footballers</h4>
+        <h4>
+          <div id="club-logo">
+            <img src="../../images/barcelona.png" />
+          </div>Barcelona SQUAD
+        </h4>
       </li>
       <li v-for="footballer in footballers" v-bind:key="footballer.id" class="collection-item">
         <div class="chip">{{footballer.position}}</div>
@@ -28,14 +32,15 @@
 import db from "../components/firebaseInit";
 
 export default {
-  name: "dashboard",
+  name: "club_1",
   data() {
     return {
       footballers: []
     };
   },
   created() {
-    db.collection("footballers")
+    db.collection("barcelona")
+      .orderBy("footballer_id")
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
@@ -44,12 +49,8 @@ export default {
             footballer_id: doc.data().footballer_id,
             name: doc.data().name,
             position: doc.data().pos,
-            speed: doc.data().spd,
-            dribbling: doc.data().dri,
-            passing: doc.data().pas,
-            shot: doc.data().sht,
-            strength: doc.data().str,
-            defense: doc.data().def
+            value: doc.data().val,
+            contract: doc.data().contr
           };
           this.footballers.push(data);
         });
@@ -57,3 +58,20 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.collection-header h4 {
+  text-align: center;
+}
+
+#club-logo {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+}
+
+#club-logo img {
+  width: 100%;
+  height: 100%;
+}
+</style>>

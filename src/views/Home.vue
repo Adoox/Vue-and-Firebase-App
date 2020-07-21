@@ -10,7 +10,7 @@
             <p>Barcelona - Spain</p>
           </div>
           <div class="card-action">
-            <router-link to="/dashboard">
+            <router-link to="/barcelona">
               <a class="btn-floating btn-large cyan pulse">
                 <i class="fas fa-pen"></i>
               </a>
@@ -27,7 +27,7 @@
             <p>Juventus - Italy</p>
           </div>
           <div class="card-action">
-            <router-link to="/dashboard">
+            <router-link to="/barcelona">
               <a class="btn-floating btn-large cyan pulse">
                 <i class="fas fa-pen"></i>
               </a>
@@ -44,7 +44,7 @@
             <p>Liverpool - England</p>
           </div>
           <div class="card-action">
-            <router-link to="/dashboard">
+            <router-link to="/barcelona">
               <a class="btn-floating btn-large cyan pulse">
                 <i class="fas fa-pen"></i>
               </a>

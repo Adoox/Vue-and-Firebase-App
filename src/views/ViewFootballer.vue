@@ -1,14 +1,89 @@
 <template>
   <div id="viewFootballer">
-    <h3>View Footballer</h3>
+    <ul class="collection with-header">
+      <li class="collection-header">
+        <h4>{{name}}</h4>
+      </li>
+      <li class="collection-item">Footballer position: {{position}}</li>
+      <li class="collection-item">Market value: €{{value}}m</li>
+      <li class="collection-item">Contract expires: {{contract}}</li>
+    </ul>
+    <div class="btn-box">
+      <router-link to="/barcelona" class="btn blue">Back</router-link>
+      <button @click="deleteFootballer" class="btn red">Remove Player from Squad</button>
+    </div>
   </div>
 </template>
 
 <script>
+import db from "../components/firebaseInit";
+
 export default {
   name: "viewFootballer",
   data() {
-    return {};
+    return {
+      footballer_id: null,
+      name: null,
+      position: null,
+      value: null,
+      contract: null
+    };
+  },
+  beforeRouteEnter(to, from, next) {
+    db.collection("barcelona")
+      .where("footballer_id", "==", to.params.footballer_id)
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          next(vm => {
+            vm.footballer_id = doc.data().footballer_id;
+            vm.name = doc.data().name;
+            vm.position = doc.data().pos;
+            vm.value = doc.data().val;
+            vm.contract = doc.data().contr;
+          });
+        });
+      });
+  },
+  watch: {
+    $route: "fetchData"
+  },
+  methods: {
+    fetchData() {
+      db.collection("barcelona")
+        .where("footballer_id", "==", this.$route.params.footballer_id)
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            this.footballer_id = doc.data().footballer_id;
+            this.name = doc.data().name;
+            this.position = doc.data().pos;
+            this.value = doc.data().val;
+            this.contract = doc.data().contr;
+          });
+        });
+    },
+    deleteFootballer() {
+      if (confirm("Are you sure?")) {
+        db.collection("barcelona")
+          .where("footballer_id", "==", this.$route.params.footballer_id)
+          .get()
+          .then(querySnapshot => {
+            querySnapshot.forEach(doc => {
+              doc.ref.delete();
+              this.$router.push("/barcelona");
+            });
+          });
+      }
+    }
   }
 };
 </script>
+
+<style scoped>
+.btn-box {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+</style>
