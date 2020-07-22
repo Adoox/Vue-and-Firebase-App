@@ -12,6 +12,14 @@
       <router-link to="/barcelona" class="btn blue">Back</router-link>
       <button @click="deleteFootballer" class="btn red">Remove Player from Squad</button>
     </div>
+    <div class="fixed-action-btn">
+      <router-link
+        v-bind:to="{name:'editFootballer',params:{footballer_id:footballer_id}}"
+        class="btn-floating btn-large red"
+      >
+        <i class="fa fa-pencil"></i>
+      </router-link>
+    </div>
   </div>
 </template>
 
