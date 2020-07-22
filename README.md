@@ -1,4 +1,4 @@
-# vuefirebase
+# Vue and Firebase Web Application
 
 ## Project setup
 ```
