@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home'
+import About from '../views/about'
 
 import Juventus from '../views/juventus.vue'
 import NewJuventusPlayer from '../views/newJuventusPlayer.vue'
@@ -26,6 +27,11 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: About
   },
   {
     path: '/juventus',

@@ -1,6 +1,6 @@
 <template>
   <div id="editFootballer">
-    <h3>Edit Footabller</h3>
+    <h3>Edit Player</h3>
     <div class="row">
       <form @submit.prevent="updateFootballer" class="col s12">
         <div class="row">
