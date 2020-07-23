@@ -48,16 +48,16 @@ export default {
       name: null,
       position: null,
       value: null,
-      contract: null
+      contract: null,
     };
   },
   beforeRouteEnter(to, from, next) {
     db.collection("barcelona")
       .where("footballer_id", "==", to.params.footballer_id)
       .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          next(vm => {
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          next((vm) => {
             vm.footballer_id = doc.data().footballer_id;
             vm.name = doc.data().name;
             vm.position = doc.data().pos;
@@ -68,15 +68,15 @@ export default {
       });
   },
   watch: {
-    $route: "fetchData"
+    $route: "fetchData",
   },
   methods: {
     fetchData() {
       db.collection("barcelona")
         .where("footballer_id", "==", this.$route.params.footballer_id)
         .get()
-        .then(querySnapshot => {
-          querySnapshot.forEach(doc => {
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
             this.footballer_id = doc.data().footballer_id;
             this.name = doc.data().name;
             this.position = doc.data().pos;
@@ -89,26 +89,26 @@ export default {
       db.collection("barcelona")
         .where("footballer_id", "==", this.$route.params.footballer_id)
         .get()
-        .then(querySnapshot => {
-          querySnapshot.forEach(doc => {
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
             doc.ref
               .update({
                 footballer_id: this.footballer_id,
                 name: this.name,
                 pos: this.position,
                 val: this.value,
-                contr: this.contract
+                contr: this.contract,
               })
               .then(() => {
                 this.$router.push({
-                  name: "viewFootballer",
-                  params: { footballer_id: this.footballer_id }
+                  name: "viewBarcelonaPlayer",
+                  params: { footballer_id: this.footballer_id },
                 });
               });
           });
         });
-    }
-  }
+    },
+  },
 };
 </script>
 

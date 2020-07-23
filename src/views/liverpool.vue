@@ -4,8 +4,8 @@
       <li class="collection-header">
         <h4>
           <div id="club-logo">
-            <img src="../../images/barcelona.png" />
-          </div>Barcelona SQUAD
+            <img src="../../images/liverpool.png" />
+          </div>Liverpool SQUAD
         </h4>
       </li>
       <li v-for="footballer in footballers" v-bind:key="footballer.id" class="collection-item">
@@ -13,7 +13,7 @@
         {{footballer.name}}
         <router-link
           class="secondary-content"
-          v-bind:to="{name:'viewBarcelonaPlayer',params:{footballer_id:footballer.footballer_id}}"
+          v-bind:to="{name:'viewLiverpoolPlayer',params:{footballer_id:footballer.footballer_id}}"
         >
           <i class="fa fa-eye"></i>
         </router-link>
@@ -21,7 +21,7 @@
     </ul>
 
     <div class="fixed-action-btn">
-      <router-link to="/newBarcelonaPlayer" class="btn-floating btn-large red">
+      <router-link to="/newLiverpoolPlayer" class="btn-floating btn-large red">
         <i class="fa fa-plus"></i>
       </router-link>
     </div>
@@ -39,7 +39,7 @@ export default {
     };
   },
   created() {
-    db.collection("barcelona")
+    db.collection("liverpool")
       .orderBy("footballer_id")
       .get()
       .then((querySnapshot) => {
